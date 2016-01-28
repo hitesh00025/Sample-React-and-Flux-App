@@ -9,8 +9,7 @@ var toastr = require('toastr');
 
 var ManageAuthorPage = React.createClass({
 	mixins: [
-		Router.Navigation
-	],
+		Router.Navigation],
 
 	statics: {
 		willTransitionFrom: function(transition, component) {

@@ -45687,6 +45687,7 @@ var AuthorPage = React.createClass({displayName: "AuthorPage",
 	},
 
 	_onChange: function() {
+		console.log('listening');
 		this.setState({ authors: AuthorStore.getAllAuthors() });
 	},
 
@@ -45702,7 +45703,6 @@ var AuthorPage = React.createClass({displayName: "AuthorPage",
 });
 
 module.exports = AuthorPage;
-
 },{"../../actions/authorActions":204,"../../stores/authorStore":222,"./authorList":211,"react":202,"react-router":33}],213:[function(require,module,exports){
 "use strict";
 
@@ -45715,8 +45715,7 @@ var toastr = require('toastr');
 
 var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
 	mixins: [
-		Router.Navigation
-	],
+		Router.Navigation],
 
 	statics: {
 		willTransitionFrom: function(transition, component) {
@@ -45810,9 +45809,6 @@ var Header = React.createClass({displayName: "Header",
 		return (
         React.createElement("nav", {className: "navbar navbar-default"}, 
           React.createElement("div", {className: "container-fluid"}, 
-              React.createElement(Link, {to: "app", className: "navbar-brand"}, 
-                React.createElement("img", {src: "images/pluralsight-logo.png"})
-              ), 
               React.createElement("ul", {className: "nav navbar-nav"}, 
                 React.createElement("li", null, React.createElement(Link, {to: "app"}, "Home")), 
                 React.createElement("li", null, React.createElement(Link, {to: "authors"}, "Authors")), 
@@ -45877,7 +45873,7 @@ var Home = React.createClass({displayName: "Home",
 	render: function() {
 		return (
 			React.createElement("div", {className: "jumbotron"}, 
-				React.createElement("h1", null, "Pluralsight Administration"), 
+				React.createElement("h1", null, "Hitesh Administration"), 
 				React.createElement("p", null, "React, React Router, and Flux for ultra-responsive web apps."), 
 				React.createElement(Link, {to: "about", className: "btn btn-primary btn-lg"}, "Learn more")
 			)
@@ -45999,6 +45995,7 @@ var AuthorStore = assign({}, EventEmitter.prototype, {
 	},
 
 	emitChange: function() {
+		console.log("hitesh");
 		this.emit(CHANGE_EVENT);
 	},
 
@@ -46023,10 +46020,10 @@ Dispatcher.register(function(action) {
 			break;
 		case ActionTypes.UPDATE_AUTHOR:
 			var existingAuthor = _.find(_authors, {id: action.author.id});
-			var existingAuthorIndex = _.indexOf(_authors, existingAuthor); 
+			var existingAuthorIndex = _.indexOf(_authors, existingAuthor);
 			_authors.splice(existingAuthorIndex, 1, action.author);
 			AuthorStore.emitChange();
-			break;	
+			break;
 		case ActionTypes.DELETE_AUTHOR:
 			_.remove(_authors, function(author) {
 				return action.id === author.id;
@@ -46039,5 +46036,4 @@ Dispatcher.register(function(action) {
 });
 
 module.exports = AuthorStore;
-
 },{"../constants/actionTypes":218,"../dispatcher/appDispatcher":219,"events":1,"lodash":7,"object-assign":8}]},{},[220]);
